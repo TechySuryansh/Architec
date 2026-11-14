@@ -30,9 +30,14 @@ figures:
 
 report:
 	mkdir -p build/report output/pdf
-	TEXINPUTS=docs/report: pdflatex -interaction=nonstopmode -halt-on-error -output-directory=build/report docs/report/phase1_report.tex
-	TEXINPUTS=docs/report: pdflatex -interaction=nonstopmode -halt-on-error -output-directory=build/report docs/report/phase1_report.tex
-	cp build/report/phase1_report.pdf output/pdf/Architec_Phase_I_Report_Draft.pdf
+	@if command -v tectonic >/dev/null 2>&1; then \
+		tectonic -Z search-path=docs/report -Z search-path=docs/figures docs/report/phase1_report.tex --outdir output/pdf && \
+		cp output/pdf/phase1_report.pdf output/pdf/Architec_Phase_I_Report_Draft.pdf; \
+	else \
+		TEXINPUTS=docs/report: pdflatex -interaction=nonstopmode -halt-on-error -output-directory=build/report docs/report/phase1_report.tex && \
+		TEXINPUTS=docs/report: pdflatex -interaction=nonstopmode -halt-on-error -output-directory=build/report docs/report/phase1_report.tex && \
+		cp build/report/phase1_report.pdf output/pdf/Architec_Phase_I_Report_Draft.pdf; \
+	fi
 
 clean:
 	rm -rf build
