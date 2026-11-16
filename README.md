@@ -90,7 +90,7 @@ The testbench checks:
 - 👥 **[Team & Submission Plan](docs/TEAM_AND_PLAN.md)**: Member roles, timeline, and submission guidelines.
 - 📄 **[Two-Page IEEE Report Draft](output/pdf/Architec_Phase_I_Report_Draft.pdf)** (with editable [LaTeX Source](docs/report/phase1_report.tex)).
 - 🎥 **[Video Demonstration Script](docs/VIDEO_SCRIPT.md)**: 3-minute 30-second script for all 5 team members.
-- 🎬 **[Video Submission Status](VIDEO.md)**: Link and recording checklist.
+- 🎬 **[Demonstration Video (Google Drive)](https://drive.google.com/file/d/1GOwnnic7O2yTTr9AbOawrpZRBdAf3lRN/view?usp=drive_link)** (details & submission checklist in [VIDEO.md](VIDEO.md)).
 
 ---
 
