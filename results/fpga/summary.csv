@@ -1,0 +1,3 @@
+design,lut4,flip_flops,logic_cells,available_lc,ram_blocks,target_mhz,fmax_mhz
+harvard,29,12,36,7680,1,25,226.91
+shared,301,279,577,7680,0,25,76.85

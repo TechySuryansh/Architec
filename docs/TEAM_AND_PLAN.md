@@ -42,7 +42,7 @@ Every member understands the complete system architecture as well as their speci
 | Deliverable | Marks | Status & Artifacts |
 | --- | ---: | --- |
 | **IEEE Report** (Abstract, Lit Review, Architecture, Individual Contributions, References) | 10 | Complete draft PDF (`output/pdf/Architec_Phase_I_Report_Draft.pdf`) and LaTeX source (`docs/report/phase1_report.tex`) |
-| **Prototype Video** (<= 5 min, all 5 members introduced, live simulation) | 15 | Script prepared (`docs/VIDEO_SCRIPT.md`), roles allocated, recording in progress (`VIDEO.md`) |
+| **Prototype Video** (<= 5 min, all 5 members introduced, live simulation) | 15 | Script prepared (`docs/VIDEO_SCRIPT.md`), roles allocated, recording linked (`VIDEO.md`) |
 | **GitHub Repository & GitHub Pages** (Code, waveforms, documentation, interactive site) | 5 | Repository created at [TechySuryansh/Architec](https://github.com/TechySuryansh/Architec); Interactive deployment live on [GitHub Pages](https://TechySuryansh.github.io/Architec) |
 
 Submission Form: https://docs.google.com/forms/d/e/1FAIpQLSc6Cx8OrOQLGj_X2ZMkyG5jc8mokq36mGRq2x8jGRNV1sbegA/viewform
@@ -56,13 +56,10 @@ Submission Form: https://docs.google.com/forms/d/e/1FAIpQLSc6Cx8OrOQLGj_X2ZMkyG5
 - [x] Generate diagrams and waveforms (`python3 scripts/make_figures.py`).
 - [x] Compile and check IEEE report draft.
 - [x] Prepare interactive GitHub Pages web application for evaluator review.
-- [ ] Record prototype video with all 5 members following `docs/VIDEO_SCRIPT.md`.
-- [ ] Embed final video link in `VIDEO.md`.
+- [x] Record prototype video with all 5 members following `docs/VIDEO_SCRIPT.md`.
+- [x] Embed final video link in `VIDEO.md`.
 - [ ] Submit repository and video link via Google Form by November 16, 2026.
 
-## Phase II (70% Weightage) Preparation
+## Final evaluation
 
-Phase II will continue building on this repository:
-1. Deepening architectural analysis (cache hierarchy, dual-port comparisons).
-2. Hardware synthesis and FPGA resource estimation.
-3. Viva / interview defense using `docs/PROJECT_GUIDE.md` and live demonstration.
+The [final report](../output/pdf/final_report.pdf) includes the architecture, simulation and routed FPGA results. The [live walkthrough](LIVE_DEMO.md) covers the demonstration and can be presented by the team at evaluation.

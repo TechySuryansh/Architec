@@ -24,20 +24,13 @@ The scope is a **small Verilog Harvard memory organization, a simple controller,
 
 The one-register fetch/execute overlap demonstrates concurrent access. Caches, a full instruction set, a frontend, and board deployment are outside this implementation's scope.
 
-## Phase I: 30%
+## Final deliverables
 
-| Requirement | Marks | Status |
-| --- | ---: | --- |
-| IEEE report: abstract, literature review, proposed solution, individual contributions, references | 10 | Draft PDF and LaTeX supplied; contribution section is clearly marked proposed |
-| Video, maximum 5 minutes: idea, all five names, working/progress | 15 | A 3:30 script covers all items; recording and accessible link remain |
-| GitHub: report, video link, source, artifacts, meaningful individual history | 5 | Repository created at [TechySuryansh/Architec](https://github.com/TechySuryansh/Architec); GitHub Pages deployed; member contributions, video link, and evaluator access remain |
-
-**Phase I is not fully ready to submit until the team completes those remaining items.** The deadline provided is **November 16, 2026, 11:59 PM IST**. The team confirmed **Section A** on November 8.
-
-## Phase II: 70%
-
-The report contains preliminary results/discussion and a conclusion. Continue developing the same repository, replace proposed contributions with actual work, and prepare each member to explain the implementation and their commits. Interview slots were not specified in the supplied notice.
-
-## This simplification pass: November 8, 2026
-
-The main demo was reduced from a seven-instruction copy chain to one LOAD, one STORE, and HALT. Its new measured counts are 4 and 6; the earlier 8 and 14 counts described the longer program, which is retained only for the reset verification scenario. `make demo` now prints a six-cycle table and creates a short VCD. All six verification scenarios still pass.
+| Requirement | Evidence |
+| --- | --- |
+| Microarchitecture and timing | The final report describes PC enable, execute-valid, shared-port priority, bubbles, synchronous reset, HALT and fault handling. |
+| Directed verification | `make test` runs six self-checking programs. The testbench checks port ownership, cycle counts, end state and instruction integrity. |
+| Quantitative comparison | `results/summary.csv` covers all six cases. The three-instruction copy has CPI 1.33 versus 2.00 including fill and HALT. |
+| FPGA utilization and maximum frequency | `make synth` maps and routes both designs for iCE40-HX8K CT256. See `results/fpga/summary.csv`, the routed JSON reports and tool versions. |
+| Final technical report | [Final report](../output/pdf/final_report.pdf), rebuilt with `make report`. |
+| Live demonstration | [Presenter walkthrough](LIVE_DEMO.md), [recorded prototype](../VIDEO.md). The team can perform the walkthrough during evaluation. |

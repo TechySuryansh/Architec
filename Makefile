@@ -4,7 +4,7 @@ PYTHON ?= python3
 RTL := $(wildcard rtl/*.v)
 .DEFAULT_GOAL := demo
 
-.PHONY: demo test figures report clean
+.PHONY: demo test figures synth report clean
 build/memory_compare.vvp: $(RTL) tb/tb_memory_compare.v
 	mkdir -p build
 	$(IVERILOG) -g2012 -Wall -s tb_memory_compare -o $@ $(RTL) tb/tb_memory_compare.v
@@ -28,15 +28,18 @@ figures:
 	rsvg-convert -o docs/figures/architecture_report.png docs/figures/architecture_report.svg
 	rsvg-convert -o docs/figures/waveforms_report.png docs/figures/waveforms_report.svg
 
+synth:
+	$(PYTHON) scripts/synth.py
+
 report:
 	mkdir -p build/report output/pdf
+	$(PYTHON) scripts/report_table.py > build/report/fpga_results.tex
 	@if command -v tectonic >/dev/null 2>&1; then \
-		tectonic -Z search-path=docs/report -Z search-path=docs/figures docs/report/phase1_report.tex --outdir output/pdf && \
-		cp output/pdf/phase1_report.pdf output/pdf/Architec_Phase_I_Report_Draft.pdf; \
+		tectonic -Z search-path=build/report -Z search-path=docs/report -Z search-path=docs/figures docs/report/final_report.tex --outdir output/pdf; \
 	else \
-		TEXINPUTS=docs/report: pdflatex -interaction=nonstopmode -halt-on-error -output-directory=build/report docs/report/phase1_report.tex && \
-		TEXINPUTS=docs/report: pdflatex -interaction=nonstopmode -halt-on-error -output-directory=build/report docs/report/phase1_report.tex && \
-		cp build/report/phase1_report.pdf output/pdf/Architec_Phase_I_Report_Draft.pdf; \
+		TEXINPUTS=build/report:docs/report: pdflatex -interaction=nonstopmode -halt-on-error -output-directory=build/report docs/report/final_report.tex && \
+		TEXINPUTS=build/report:docs/report: pdflatex -interaction=nonstopmode -halt-on-error -output-directory=build/report docs/report/final_report.tex && \
+		cp build/report/final_report.pdf output/pdf/final_report.pdf; \
 	fi
 
 clean:

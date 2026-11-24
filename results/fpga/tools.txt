@@ -1,0 +1,3 @@
+Yosys 0.71+post (git sha1 5628c13240f670b97aaaca3d47940c4afb8ff572, Release, AppleClang clang++ 21.0.0.21000401)
+"nextpnr-ice40" -- Next Generation Place and Route (Version )
+Homebrew nextpnr-ice40 package 0.11.1_2

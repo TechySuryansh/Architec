@@ -11,8 +11,8 @@
 
 | Member | Enrolment No. | Institutional Email | Project Ownership |
 | --- | --- | --- | --- |
-| **Suryansh Singh (Lead)** | 2401010467 | `suryansh.singh2024@nst.rishihood.edu.in` | System Integration, IEEE Report, Repository & GitHub Pages Deployment |
-| **Pranjal Modi** | 2401010334 | `pranjal.modi2024@nst.rishihood.edu.in` | Instruction Memory, Program Counter, Instruction Fetch Verification |
+| **Suryansh Singh (Lead)** | 2401010467 | `suryansh.singh2024@nst.rishihood.edu.in` | System Integration, IEEE Report, Repository & GitHub Pages Deployment,Program Counter |
+| **Pranjal Modi** | 2401010334 | `pranjal.modi2024@nst.rishihood.edu.in` | Instruction Memory, Instruction Fetch Verification |
 | **Sarvjeet Yadav** | 2401010424 | `sarvjeet.yadav2024@nst.rishihood.edu.in` | Data Memory, Read/Write Control, Timing & Reset Retention |
 | **Abhishek Tripathi** | 2401010022 | `abhishek.tripathi2024@nst.rishihood.edu.in` | Shared Memory, Address Decoder, Port Contention Arbitration |
 | **Sameer Khan** | 2401020054 | `sameer.khan2024@nst.rishihood.edu.in` | Testbench Suite, Simulation Verification, Waveforms & Analysis |
@@ -82,13 +82,25 @@ The testbench checks:
 
 ---
 
+## FPGA results and live demonstration
+
+Run `make synth` from the repository root with Python 3, Yosys and
+nextpnr-ice40 on PATH. On macOS the FPGA tools are available with
+`brew install yosys nextpnr-ice40`. The flow targets the iCE40-HX8K CT256
+at 25 MHz, seed 1, with automatically assigned I/O pins for the comparison.
+It writes raw synthesis and routing logs under `build/fpga/` and publishes
+[routed timing and utilization](results/fpga/summary.csv) with the tool versions
+in `results/fpga/`. Run `make report` with Tectonic or pdfLaTeX to rebuild the
+report using the archived measurements. Follow the [live demo](docs/LIVE_DEMO.md)
+to present the architecture, waveforms, simulations and hardware estimates.
+
 ## Documentation & Project Links
 
 - 🌐 **[Interactive Web Portal (GitHub Pages)](https://TechySuryansh.github.io/Architec)**: Live cycle stepper, architecture visualizer, study materials, and simulator.
 - 📘 **[Study Material & Project Guide](docs/PROJECT_GUIDE.md)**: Cycle-by-cycle breakdown, ISA description, module reference, and viva interview Q&A.
 - 📋 **[Requirements & Evidence Checklist](docs/REQUIREMENTS.md)**: Deliverable audit against evaluation criteria.
 - 👥 **[Team & Submission Plan](docs/TEAM_AND_PLAN.md)**: Member roles, timeline, and submission guidelines.
-- 📄 **[Two-Page IEEE Report Draft](output/pdf/Architec_Phase_I_Report_Draft.pdf)** (with editable [LaTeX Source](docs/report/phase1_report.tex)).
+- 📄 **[Final technical report](output/pdf/final_report.pdf)** (with editable [LaTeX Source](docs/report/final_report.tex)).
 - 🎥 **[Video Demonstration Script](docs/VIDEO_SCRIPT.md)**: 3-minute 30-second script for all 5 team members.
 - 🎬 **[Demonstration Video (Google Drive)](https://drive.google.com/file/d/1GOwnnic7O2yTTr9AbOawrpZRBdAf3lRN/view?usp=drive_link)** (details & submission checklist in [VIDEO.md](VIDEO.md)).
 
