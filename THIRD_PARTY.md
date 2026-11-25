@@ -12,3 +12,7 @@ The report contains original project text and cites the external works it
 discusses. The Verilog, testbench, diagrams, and project documentation were
 created for this starter project with AI assistance; named student
 contributions must be documented from actual work.
+
+## Phase II source
+
+The cached hierarchy, expanded verification suite, study materials, and presentation generator are adapted from [Team HEXARCH](https://github.com/mitul-bhatia/HEXARCH/tree/00213d407c2d271c9a2ca623e443573ba855e30d). The upstream repository credits Akshat Chauhan, Ajeesh Amreet, Vaibhav, Hardik Maheshwari, and Mitul Bhatia. Architec uses its own team roster and video link.

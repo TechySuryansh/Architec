@@ -1,65 +1,51 @@
-# Team Architec and Submission Plan
+# Team Architec: roles and submission plan
 
-## Roster Supplied by the Team
+Section **A** · Project 9 · Phase I deadline **16 November 2026, 11:59 PM IST**.
 
-Section: **A**. All five members belong to the same section.
+## Roles
 
-| Member | Enrolment number | Institutional email |
-| --- | --- | --- |
-| Suryansh Singh (Lead) | 2401010467 | suryansh.singh2024@nst.rishihood.edu.in |
-| Pranjal Modi | 2401010334 | pranjal.modi2024@nst.rishihood.edu.in |
-| Sarvjeet Yadav | 2401010424 | sarvjeet.yadav2024@nst.rishihood.edu.in |
-| Abhishek Tripathi | 2401010022 | abhishek.tripathi2024@nst.rishihood.edu.in |
-| Sameer Khan | 2401020054 | sameer.khan2024@nst.rishihood.edu.in |
+This table is the single source of truth. The report (Table II), the video guide and the starter tasks use the same split.
 
-Response email: `suryansh.singh2024@nst.rishihood.edu.in`.
+| Member | Owns | Presents in the video | Starter task |
+| --- | --- | --- | --- |
+| Pranjal Modi | Instruction path: `rtl/program_counter.v`, `rtl/instruction_memory.v`, `programs/demo.hex` | Scene 2: the idea, Harvard half of the diagram, program counter | [Full 16-byte program test](MEMBER_TASKS.md#pranjal) |
+| Sarvjeet Yadav | Data path: `rtl/data_memory.v`, `rtl/read_write_control.v`, `programs/data.hex` | Scene 3: the program and data-memory timing | [New data-pattern test](MEMBER_TASKS.md#sarvjeet) |
+| Abhishek Tripathi | Shared memory: `rtl/shared_memory.v`, `rtl/address_decoder.v`, the fetch-stall rule | Scene 4: why shared memory waits | [Physical-address checks](MEMBER_TASKS.md#abhishek) |
+| Sameer Khan | Simulation: `tb/`, `results/`, waveforms | Scenes 5-6: `make demo`, waveform, `make test` | [Memory-instruction sweep and waveform memory](MEMBER_TASKS.md#sameer) |
+| Suryansh Singh | Integration: `rtl/memory_system.v`, `rtl/simple_controller.v`, `Makefile`, `scripts/`, report, repository, video | Scenes 1 and 7, and drives the recording | [Merge, report, video link, submission](MEMBER_TASKS.md#suryansh) |
 
-## Work Split and Responsibilities
+Every member should be able to explain the whole project, not only their own part. The [study guide](https://TechySuryansh.github.io/Architec/) explains it from zero.
 
-Every member understands the complete system architecture as well as their specialized module ownership:
+## Schedule (from 14 November)
 
-| Member | Module / Responsibility | Scope & Verification Evidence |
-| --- | --- | --- |
-| **Suryansh Singh** | System Integration & Deployment | Architecture integration (`memory_system.v`), results comparison, IEEE report authoring, GitHub repository setup, and GitHub Pages deployment (`index.html`) |
-| **Pranjal Modi** | Instruction Memory & PC | `instruction_memory.v`, `program_counter.v`; PC increment logic, fetch acceptance handshake, boundary tests |
-| **Sarvjeet Yadav** | Data Memory & Control | `data_memory.v`, `read_write_control.v`; synchronous writes, combinational reads, reset retention, opcode decoding (`LOAD`, `STORE`, `HALT`, `NOP`) |
-| **Abhishek Tripathi** | Shared Memory & Decoder | `shared_memory.v`, `address_decoder.v`; address mapping (0-15 instructions, 16-31 data), port arbitration, fetch stall logic |
-| **Sameer Khan** | Testbench & Waveforms | `tb/tb_memory_compare.v`; 6 verification scenarios, cycle-by-cycle trace (`demo_trace.csv`), waveform validation (`demo.vcd`, `waveforms.png`) |
-
-## Project Timeline & Milestones
-
-| Date (IST) | Milestone Goal |
+| Date (IST) | Goal |
 | --- | --- |
-| November 8-10 | Run simulation baseline (`make demo`), verify Harvard (4 cycles) vs Shared (6 cycles) |
-| November 11-12 | Implement module enhancements, testbench assertions, and address decoder logic |
-| November 13 | Finalize IEEE report draft, waveform generation, and technical documentation |
-| November 14 | Deploy interactive GitHub Pages showcase and record team demonstration video |
-| November 15 | Complete team rehearsal for viva/interview and final review of repository links |
-| November 16 | Submit official Phase I submission form before 11:59 PM IST |
+| 14-15 Nov | Each member opens the [Team hub](https://TechySuryansh.github.io/Architec/team.html), clicks their name, forks the repository and runs `make demo` and `make test` on their own machine (no invitation needed). |
+| 15-16 Nov | Each member finishes their starter task and opens a pull request from their own GitHub account. The automatic check must be green; someone else reviews it; Suryansh merges with a merge commit and regenerates `results/`. Every merge to `main` republishes the website. |
+| 16 Nov | Record the video ([recording guide](VIDEO_SCRIPT.md)), upload it, put the link in [`VIDEO.md`](../VIDEO.md). |
+| 16 Nov | Final report check, `make report`, commit the PDF. |
+| 16 Nov | Check everything from a logged-out browser, then submit the form, well before 11:59 PM IST. |
 
-## Phase I Deliverables (30% Weightage)
+## Phase I checklist
 
-| Deliverable | Marks | Status & Artifacts |
-| --- | ---: | --- |
-| **IEEE Report** (Abstract, Lit Review, Architecture, Individual Contributions, References) | 10 | Complete draft PDF (`output/pdf/Architec_Phase_I_Report_Draft.pdf`) and LaTeX source (`docs/report/phase1_report.tex`) |
-| **Prototype Video** (<= 5 min, all 5 members introduced, live simulation) | 15 | Script prepared (`docs/VIDEO_SCRIPT.md`), roles allocated, recording linked (`VIDEO.md`) |
-| **GitHub Repository & GitHub Pages** (Code, waveforms, documentation, interactive site) | 5 | Repository created at [TechySuryansh/Architec](https://github.com/TechySuryansh/Architec); Interactive deployment live on [GitHub Pages](https://TechySuryansh.github.io/Architec) |
+| Rubric item | Marks | Where it is | Still to do |
+| --- | ---: | --- | --- |
+| IEEE report: abstract, literature review, proposed solution, individual contributions, references | 10 | [`output/pdf/Architec_Phase_I_Report.pdf`](../output/pdf/Architec_Phase_I_Report.pdf), source in `docs/report/` | Rebuild after the member pull requests are merged |
+| Prototype video, at most 5 minutes, idea, all five names, working prototype | 15 | [Recording guide](VIDEO_SCRIPT.md), title card in `docs/video/` | Record, upload, add the link to `VIDEO.md` |
+| GitHub: report, video link, prototype files, artefacts, individual history | 5 | This repository | Every member's own commits; the video link |
 
-Submission Form: https://docs.google.com/forms/d/e/1FAIpQLSc6Cx8OrOQLGj_X2ZMkyG5jc8mokq36mGRq2x8jGRNV1sbegA/viewform
+- [x] Section confirmed: A.
+- [x] Repository: https://github.com/TechySuryansh/Architec (public, so evaluators can open it).
+- [ ] All four members have forked the repository and run `make demo` and `make test` (Team hub, step 1-4).
+- [ ] Each member's starter-task pull request merged from their own account.
+- [ ] Video recorded, at most 5:00, uploaded with link access for anyone; link and duration in `VIDEO.md`.
+- [ ] After the merges: scenario count and report Tables I and II updated, then `make report guide`.
+- [ ] Repository link submitted through the form: https://docs.google.com/forms/d/e/1FAIpQLSc6Cx8OrOQLGj_X2ZMkyG5jc8mokq36mGRq2x8jGRNV1sbegA/viewform
 
-## Phase I Submission Checklist
+## Phase II (70%)
 
-- [x] Confirm common section: Section A.
-- [x] Verify all 5 member names, enrolment numbers, and institutional emails.
-- [x] Verify RTL modules in `rtl/` and testbench in `tb/tb_memory_compare.v`.
-- [x] Run simulation verification: all 6 scenarios pass (`make test`).
-- [x] Generate diagrams and waveforms (`python3 scripts/make_figures.py`).
-- [x] Compile and check IEEE report draft.
-- [x] Prepare interactive GitHub Pages web application for evaluator review.
-- [x] Record prototype video with all 5 members following `docs/VIDEO_SCRIPT.md`.
-- [x] Embed final video link in `VIDEO.md`.
-- [ ] Submit repository and video link via Google Form by November 16, 2026.
+Keep developing the same repository with the same individual history. Each member should be ready to explain the design and their own commits in the interview; the [study guide](https://TechySuryansh.github.io/Architec/) has likely questions. Phase II built: the shared lower-level memory with split caches, see [PHASE2.md](PHASE2.md) (per-member tasks included). Still possible: a synchronous-read memory model and synthesis results.
 
-## Final evaluation
+### Phase II evaluation (confirmed by the CSAI Lead Office)
 
-The [final report](../output/pdf/final_report.pdf) includes the architecture, simulation and routed FPGA results. The [live walkthrough](LIVE_DEMO.md) covers the demonstration and can be presented by the team at evaluation.
+**24 November 2026, 3:25 PM to 3:40 PM, room A408.** 15 minutes, strictly on time, no rescheduling, **all five members present**, lab attendance in the same room. Preparation (the 15-minute plan, question banks, live-change drills, cheat sheet): study guide sections 17-21, [live site](https://TechySuryansh.github.io/Architec/).

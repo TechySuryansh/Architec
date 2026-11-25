@@ -1,36 +1,43 @@
-# Check against the supplied project brief
+# Check against the project brief and the Phase I rubric
 
-The scope is a **small Verilog Harvard memory organization, a simple controller, and a shared single-port comparison**. The short program is `LOAD 0; STORE 1; HALT`. It copies one byte and exposes the required simultaneous access opportunity.
+## Project brief (Project 9)
 
-## Technical requirements
+| Brief item | Evidence in this repository | Status |
+| --- | --- | --- |
+| Von Neumann vs Harvard architecture | `rtl/memory_system.v`: `SHARED_BUS=0` builds the Harvard organization, `SHARED_BUS=1` a von Neumann-style single shared memory, with the same controller | Met |
+| Program Counter | `rtl/program_counter.v`; tests check advance on fetch and hold during a blocked fetch | Met |
+| Instruction Memory | `rtl/instruction_memory.v`, 16 x 8 bits, loaded from `programs/demo.hex` | Met |
+| Data Memory | `rtl/data_memory.v`, 16 x 8 bits, loaded from `programs/data.hex`; combinational read, rising-edge write | Met |
+| Address Decoder | `rtl/address_decoder.v`: in the shared memory, instructions at 0-15 and data at 16-31. In the Harvard memories each 4-bit address is used directly | Met |
+| Read/Write Control | `rtl/read_write_control.v` decodes the instruction into LOAD (read), STORE (write), HALT and illegal; `rtl/simple_controller.v` lines 25-28 gate these into the read, write and fetch enables | Met |
+| Optional Shared Lower-Level Memory | Phase II: `rtl/hierarchy_system.v`, `rtl/l1_cache.v`, `rtl/lower_memory.v`; `make hierarchy` | Met |
+| Independent instruction and data paths | `rtl/memory_system.v`, `harvard_path` block | Met |
+| Connected to a simple processor or controller | `rtl/simple_controller.v`: PC, instruction register with valid bit, accumulator | Met |
+| Execute programs with fetches and data accesses | `make demo` (LOAD/STORE/HALT), `make test` (11 scenarios), `make stress` (2000 random programs) | Met |
+| Analyze simultaneous access opportunities | Cycle-by-cycle demo table; overlap and stall counts per scenario; cycle model Harvard = N+1, shared = N+1+M, confirmed on all scenarios and 2000 random programs | Met |
+| Deliverable: Harvard memory architecture RTL | `rtl/` | Met |
+| Deliverable: block diagram | `docs/figures/architecture.png` (editable SVG beside it), report Fig. 1 | Met |
+| Deliverable: simulation waveforms | `results/demo.vcd`, `results/memory_compare.vcd`, `docs/figures/waveforms.png`, report Fig. 2 | Met |
+| Deliverable: comparison with shared memory | Same controller, program, data, 32-byte capacity and clock; demo 4 vs 6 cycles; report Table I and cycle model | Met |
+| Evaluation: separation, memory control, timing, comparison | Testbench checks every data word, unchanged instructions, exact operation counts, PC advance/hold, exclusive shared-port use and halt behaviour | Met |
 
-| Requested item | Evidence in this project |
-| --- | --- |
-| Separate instruction and data paths | `rtl/memory_system.v` instantiates independent instruction and data memories in Harvard mode |
-| Simple processor or controller | `rtl/simple_controller.v`: PC, one instruction register, one accumulator, and memory controls |
-| Program counter | `rtl/program_counter.v`; tests check advance on fetch and hold during a blocked fetch |
-| Instruction memory | `rtl/instruction_memory.v`; 16 x 8 bits, loaded from the program hex file |
-| Data memory and read/write control | `rtl/data_memory.v` and `rtl/read_write_control.v`; expected values and exact access counts checked |
-| Address decoding and organization | `rtl/address_decoder.v`; shared addresses 0-15 contain instructions and 16-31 contain data |
-| Execute programs with fetches and data accesses | `make demo` runs LOAD/STORE/HALT; `make test` exercises six scenarios |
-| Analyze simultaneous access | Harvard overlaps fetch/data in cycles 2 and 3; shared memory permits one access per cycle |
-| Harvard architecture RTL | All implementation modules in `rtl/` |
-| Block diagram | `docs/figures/architecture.png` and editable SVG |
-| Simulation waveforms | `results/demo.vcd`, sampled CSV, and `docs/figures/waveforms.png` |
-| Shared-memory comparison | Same controller, program, data, capacity, and clock period; measured demo: 4 versus 6 cycles |
-| Correct separation and control | Testbench checks all data words, unchanged instructions, exactly-once operations, and exclusive shared-port use |
-| Timing behavior | Combinational reads, rising-edge writes, synchronous reset, PC hold, halt, and store-to-load checks |
-| Optional shared lower-level memory | Omitted; explicitly optional in the supplied brief |
+## Phase I rubric (30%)
 
-The one-register fetch/execute overlap demonstrates concurrent access. Caches, a full instruction set, a frontend, and board deployment are outside this implementation's scope.
+| Requirement | Marks | Evidence | Status |
+| --- | ---: | --- | --- |
+| IEEE report with abstract, literature review, proposed solution, individual contributions, references | 10 | [`output/pdf/Architec_Phase_I_Report.pdf`](../output/pdf/Architec_Phase_I_Report.pdf), IEEEtran source in `docs/report/` | Met |
+| Video at most 5 minutes: idea, all five names, working prototype | 15 | Google Drive upload (4:53), link in [`VIDEO.md`](../VIDEO.md) | Met |
+| GitHub: report, video link, prototype files, artefacts | 5 | This repository; [`VIDEO.md`](../VIDEO.md) holds the video link | Met |
+| GitHub: every member's meaningful contribution in the commit history | (part of the 5) | Member PRs (#6, #7, #8, #9) merged in commit history | Met |
 
-## Final deliverables
+Deadline: **16 November 2026, 11:59 PM IST**. The plan and checklist are in [`TEAM_AND_PLAN.md`](TEAM_AND_PLAN.md).
 
-| Requirement | Evidence |
-| --- | --- |
-| Microarchitecture and timing | The final report describes PC enable, execute-valid, shared-port priority, bubbles, synchronous reset, HALT and fault handling. |
-| Directed verification | `make test` runs six self-checking programs. The testbench checks port ownership, cycle counts, end state and instruction integrity. |
-| Quantitative comparison | `results/summary.csv` covers all six cases. The three-instruction copy has CPI 1.33 versus 2.00 including fill and HALT. |
-| FPGA utilization and maximum frequency | `make synth` maps and routes both designs for iCE40-HX8K CT256. See `results/fpga/summary.csv`, the routed JSON reports and tool versions. |
-| Final technical report | [Final report](../output/pdf/final_report.pdf), rebuilt with `make report`. |
-| Live demonstration | [Presenter walkthrough](LIVE_DEMO.md), [recorded prototype](../VIDEO.md). The team can perform the walkthrough during evaluation. |
+## Phase II rubric (70%)
+
+| Requirement | Evidence | Status |
+| --- | --- | --- |
+| Final IEEE report: abstract, literature review, proposed solution, results and discussion, individual contributions, conclusion, references | [`output/pdf/Architec_Final_Report.pdf`](../output/pdf/Architec_Final_Report.pdf), source `docs/report/phase2_report.tex` | Met |
+| GitHub repository maintained, version history and individual contributions | Member pull requests, see [`PHASE2.md`](PHASE2.md) for each member's Phase II task | In progress: needs every member's own Phase II PR |
+| Project interview (understanding, implementation, contributions) | Study guide sections 12-16 | Prepare; slots not yet announced |
+
+Submission format and date for Phase II: not yet announced by the instructors.

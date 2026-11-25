@@ -13,8 +13,8 @@
 | --- | --- |
 | **Team Name** | Team Architec |
 | **Section** | Section A |
-| **Target Duration** | 3 minutes 30 seconds (Max allowed: 5 minutes) |
-| **Video Link** | [Google Drive Video Link](https://drive.google.com/file/d/1GOwnnic7O2yTTr9AbOawrpZRBdAf3lRN/view?usp=drive_link) |
+| **Duration** | <!-- VIDEO-DURATION -->3 minutes 30 seconds planned (5-minute limit)<!-- /VIDEO-DURATION --> |
+| **Video Link** | <!-- VIDEO-LINK -->[Google Drive Video Link](https://drive.google.com/file/d/1GOwnnic7O2yTTr9AbOawrpZRBdAf3lRN/view?usp=drive_link)<!-- /VIDEO-LINK --> |
 | **Direct URL** | `https://drive.google.com/file/d/1GOwnnic7O2yTTr9AbOawrpZRBdAf3lRN/view?usp=drive_link` |
 | **Evaluator Access** | Verified access via Drive link |
 

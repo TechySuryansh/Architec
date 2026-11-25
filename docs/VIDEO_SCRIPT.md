@@ -1,95 +1,136 @@
-# Prototype Video Demonstration Script
+# Video recording guide
 
-**Target Duration:** 3 minutes 30 seconds (Maximum: 5 minutes)  
-**Team:** Architec, Section A  
-**Project:** Instruction and Data Memory Hierarchy (MCA Project 9, 2026)
+This is the only video script. Read it once from top to bottom before recording day.
 
-All five team members must be introduced and clearly visible on screen. Use this script for recording the project demonstration video.
+**Clickable version:** the [Team hub → Video script](https://TechySuryansh.github.io/Architec/team.html#video) shows the same words scene by scene: click a scene to see what to show, what to say and when to switch windows, and use **Prompter** for large text and a timer while recording. `python3 scripts/check_site.py` keeps the two identical.
 
----
+**The video must:** stay at or under **5:00** · state the project idea · introduce all **five** members by full name · show the working prototype (Verilog, block diagram, simulation).
+**This plan:** 7 scenes, about **3:40 of speech** and about **4:40 with screen actions**, leaving about 20 seconds spare.
 
-## Video Outline & Speaker Timeline
+## 1. Who does what
 
-| Timestamp | Speaker | Topic & Visuals to Present |
+One laptop does all the screen work. Suryansh is the **driver**: he types the commands and switches windows when a speaker reaches a cue word. Speakers do not touch the keyboard.
+
+| Member | Owns in the project | Scene | Shows on screen |
+| --- | --- | --- | --- |
+| Suryansh Singh | Integration: `memory_system.v`, `simple_controller.v`, build, report, repository, video | 1 and 7, and drives | Title card, test result, report, GitHub page |
+| Pranjal Modi | Instruction path: `program_counter.v`, `instruction_memory.v` | 2 | Block diagram (Harvard half), `program_counter.v` |
+| Sarvjeet Yadav | Data path: `data_memory.v`, `read_write_control.v` | 3 | Program in the README, `programs/demo.hex`, `data_memory.v` |
+| Abhishek Tripathi | Shared memory: `shared_memory.v`, `address_decoder.v`, the fetch-stall rule | 4 | Block diagram (shared half), `address_decoder.v`, line 28 of `simple_controller.v` |
+| Sameer Khan | Simulation: testbenches, results, waveforms | 5 and 6 | Terminal running `make demo` and `make test`, waveform image |
+
+## 2. Setup, 30 minutes before
+
+**Recording, choose one:**
+- **Same room (simplest).** On the Mac press `Cmd + Shift + 5`, choose *Record Entire Screen*, then *Options → Microphone → MacBook Microphone*. Everyone sits close to the laptop.
+- **Online.** Start a Zoom or Google Meet call. Everyone sets their display name to their full name. Suryansh shares his entire screen and starts the call's recording. Cameras on for the opening are a plus, not required.
+
+**Prepare the laptop:**
+1. Turn on *Do Not Disturb* and close chat apps, mail and unrelated tabs.
+2. Set the editor and terminal font to 18 pt or larger, so code is readable in the video.
+3. In the terminal: `cd` into the project folder, then run `make demo` and `make test` once, and check both pass. Then type `clear`.
+4. Open these before recording (as editor tabs or browser tabs). Each scene below starts with a **Driver, before speaking** line saying which one to show:
+
+| # | Open this | Used in scene |
 | --- | --- | --- |
-| **0:00 - 0:30** | All Five Members | Title slide, team introduction, and project overview |
-| **0:30 - 1:00** | Pranjal Modi | Instruction fetch path, Program Counter (`program_counter.v`), and instruction memory |
-| **1:00 - 1:30** | Sarvjeet Yadav | Demo program execution (`LOAD 0 / STORE 1 / HALT`), data memory, and read/write timing |
-| **1:30 - 2:00** | Abhishek Tripathi | Shared memory architecture, address decoding (0-15 vs 16-31), and fetch stall arbitration |
-| **2:00 - 3:00** | Sameer Khan | Live simulation (`make demo`), waveform analysis (`waveforms.png`), and 4 vs 6 cycle proof |
-| **3:00 - 3:30** | Suryansh Singh | Comprehensive test suite (`make test`), IEEE report, and interactive GitHub Pages portal |
+| 1 | `docs/video/title_card.png`, full screen | 1 |
+| 2 | `docs/figures/architecture.png` | 2, 4 |
+| 3 | `rtl/program_counter.v` | 2 |
+| 4 | `README.md` (scroll to the three-line program) | 3 |
+| 5 | `programs/demo.hex` | 3 |
+| 6 | `rtl/data_memory.v` | 3 |
+| 7 | `rtl/address_decoder.v` | 4 |
+| 8 | `rtl/simple_controller.v`, scrolled to line 28 | 4 |
+| 9 | Terminal, cleared | 5, 6, 7 |
+| 10 | `docs/figures/waveforms.png` | 5 |
+| 11 | `output/pdf/Architec_Phase_I_Report.pdf`, page 1 | 7 |
+| 12 | https://github.com/TechySuryansh/Architec in a browser | 7 |
+| 13 | `docs/video/end_card.png` | end |
 
----
+5. Give a phone stopwatch to someone who is not speaking in the current scene. Rehearse once without recording.
 
-## Detailed Speaking Script
+## 3. Shot list
 
-### 1. Opening: All Team Members (0:00 - 0:30)
+| Scene | Time | Speaker | On screen |
+| --- | --- | --- | --- |
+| 1 | 0:00-0:25 | Suryansh, then everyone | Title card with all five names |
+| 2 | 0:25-1:10 | Pranjal | Block diagram, Harvard half → `program_counter.v` |
+| 3 | 1:10-1:55 | Sarvjeet | README program → `demo.hex` → `data_memory.v` |
+| 4 | 1:55-2:35 | Abhishek Tripathi | Block diagram, shared half → `address_decoder.v` → `simple_controller.v` line 28 |
+| 5 | 2:35-3:40 | Sameer | Terminal: `make demo` → `waveforms.png` |
+| 6 | 3:40-3:58 | Sameer | Terminal: `make test` |
+| 7 | 3:58-4:35 | Suryansh | `no_data_access` line on the terminal → report page 1 → GitHub page → end card |
 
-*Visual: Title slide showing "Team Architec - MCA Project 9, Section A - Instruction and Data Memory Hierarchy".*
+## 4. Exact words
 
-> **Suryansh Singh:** "Hello everyone. We are **Team Architec** from Section A. Our project explores the architectural differences between Harvard and Shared-Memory hierarchies in Verilog. Let's introduce our team:"  
-> - **Suryansh Singh:** "I'm Suryansh Singh (Enrollment 2401010467), responsible for system integration, the IEEE report, and deployment."  
-> - **Pranjal Modi:** "I'm Pranjal Modi (Enrollment 2401010334), handling instruction memory and the program counter."  
-> - **Sarvjeet Yadav:** "I'm Sarvjeet Yadav (Enrollment 2401010424), covering data memory and read/write control."  
-> - **Abhishek Tripathi:** "I'm Abhishek Tripathi (Enrollment 2401010022), focusing on shared memory architecture and address decoding."  
-> - **Sameer Khan:** "I'm Sameer Khan (Enrollment 2401020054), responsible for testbench verification and waveform analysis."
+**Bold words in brackets** are the driver's cues: when the speaker reaches that word, the driver switches window. **Speakers do not read the bracketed words aloud.**
 
----
+### Scene 1 · 0:00-0:25 · Suryansh, then everyone
+*Driver, before speaking: show the title card (#1) full screen, then start recording.*
 
-### 2. Instruction Path & PC: Pranjal Modi (0:30 - 1:00)
+- **Suryansh:** "We are Team Architec from Section A. Our project is Project 9, Instruction and Data Memory Hierarchy."
+- **Pranjal:** "I'm Pranjal Modi."
+- **Sarvjeet:** "I'm Sarvjeet Yadav."
+- **Abhishek Tripathi:** "I'm Abhishek Tripathi."
+- **Sameer:** "I'm Sameer Khan."
+- **Suryansh:** "And I'm Suryansh Singh."
 
-*Visual: Zoom into the Harvard controller and instruction memory diagram (`docs/figures/architecture.png`).*
+### Scene 2 · 0:25-1:10 · Pranjal
+*Driver, before speaking: show `architecture.png` (#2), cursor on the Harvard half.*
 
-> **Pranjal Modi:** "At the core of memory organization is the separation of control flow and data flow. In our design, the **Program Counter (PC)** generates 4-bit instruction addresses, addressing a $16 \times 8$-bit instruction memory.  
-> The controller features an instruction register with an execution valid bit. Because instruction fetch has its own dedicated bus in Harvard architecture, the controller can fetch the next instruction simultaneously while the current instruction executes, eliminating structural hazards."
+"Our idea is simple. Instructions say what to do; data is the value being worked on. In a Harvard design they have separate memories and separate ports, so the controller can fetch the next instruction while the current one reads or writes data. In a von Neumann-style design, both live in one memory with one port, so they take turns. **[program counter]** This is our program counter. On each clock edge it adds one, but only when a fetch is accepted; otherwise it holds."
 
----
+*Driver: at* **program counter**, *switch to `rtl/program_counter.v` and point at lines 7-9.*
 
-### 3. Program Flow & Data Memory: Sarvjeet Yadav (1:00 - 1:30)
+### Scene 3 · 1:10-1:55 · Sarvjeet
+*Driver, before speaking: show `README.md` (#4), scrolled to the three-line program.*
 
-*Visual: Show program table (`LOAD 0`, `STORE 1`, `HALT`) and `rtl/data_memory.v`.*
+"Our program has three instructions: LOAD 0, STORE 1, HALT. **[In memory]** In memory they are the bytes 10, 21 and F0. The first hex digit is the operation; the second is the data address. Data address 0 starts at 7. **[data memory]** This is our data memory, sixteen bytes. A read is ready within the same cycle; a write happens on the rising clock edge. LOAD copies 7 into the accumulator, STORE writes it to address 1, and HALT stops."
 
-> **Sarvjeet Yadav:** "Our demonstration executes a targeted program:  
-> 1. `LOAD 0` reads seed value `7` from data address 0 into the accumulator.  
-> 2. `STORE 1` writes `7` from the accumulator to data address 1.  
-> 3. `HALT` stops the processor cleanly.  
-> Data memory is a $16 \times 8$-bit synchronous RAM. Reads are combinational, allowing the operand to be captured at the rising clock edge, while writes commit synchronously at the clock edge. Reset clears registers while preserving memory contents."
+*Driver: at* **In memory**, *switch to `programs/demo.hex`. At* **data memory**, *switch to `rtl/data_memory.v` and point at lines 13-15.*
 
----
+### Scene 4 · 1:55-2:35 · Abhishek Tripathi
+*Driver, before speaking: show `architecture.png` (#2) again, cursor on the shared half.*
 
-### 4. Shared Memory & Port Contention: Abhishek Tripathi (1:30 - 2:00)
+"Both designs hold thirty-two bytes in total. In the shared design, one memory has one port. **[address decoder]** Our address decoder puts instructions at addresses 0 to 15 and data at 16 to 31. **[This line]** This line in the controller is the key rule: in shared mode, fetch is switched off during a LOAD or STORE. So the program counter holds, and the next instruction is fetched one cycle later."
 
-*Visual: Show shared memory block and `rtl/address_decoder.v`.*
+*Driver: at* **address decoder**, *switch to `rtl/address_decoder.v` (lines 8-9). At* **This line**, *switch to `rtl/simple_controller.v` and highlight line 28.*
 
-> **Abhishek Tripathi:** "To highlight the Harvard advantage, we compare it against an equivalent 32-byte shared single-port memory.  
-> Our address decoder maps instruction addresses 0 to 15, and data addresses 16 to 31 onto one physical port. When a `LOAD` or `STORE` instruction executes, data memory access requires the port. Because data has priority, the instruction fetch is blocked and the PC holds its value. This single structural bottleneck introduces stalls that directly increase total execution time."
+### Scene 5 · 2:35-3:40 · Sameer
+*Driver, before speaking: show the terminal (#9), type `make demo` and press Enter.*
 
----
+"I'll run make demo. Each row is one clock cycle. F, R and W mean instruction fetch, data read and data write. In cycle 2, Harvard fetches STORE while LOAD reads data, so fetch and read are both 1. Shared fetch is 0, because its one port is busy. In cycle 3, Harvard fetches HALT while STORE writes the 7. Harvard executes HALT in cycle 4, so it finishes in four cycles. Shared needs six; the two extra cycles are the two blocked fetches. Both end with 7 at data address 1. **[waveform]** The waveform shows the same: Harvard fetch overlaps the read and the write; shared fetch never does."
 
-### 5. Live Demonstration & Waveforms: Sameer Khan (2:00 - 3:00)
+*Driver: point at rows 2, 3, 4 and 6 as Sameer mentions them. At* **waveform**, *switch to `docs/figures/waveforms.png`.*
 
-*Visual: Terminal running `make demo`, followed by the waveform diagram (`docs/figures/waveforms.png`).*
+### Scene 6 · 3:40-3:58 · Sameer
+*Driver, before speaking: go back to the terminal (#9), type `clear; make test` and press Enter.*
 
-> **Sameer Khan:** "Let's see this live. Running `make demo` in the terminal compiles our RTL with Icarus Verilog:  
-> - In **Cycle 2**, Harvard executes `LOAD 0` while simultaneously fetching `STORE 1`—both fetch and read signals are active. In contrast, shared memory blocks the fetch.  
-> - In **Cycle 3**, Harvard executes `STORE 1` while fetching `HALT`—both write and fetch signals are active concurrently!  
-> As a result, Harvard finishes the program in **4 clock cycles**, whereas shared memory requires **6 clock cycles** to achieve the exact same final state: `data[1] = 7`."
+"Our testbench checks all of this automatically. make test runs every scenario, including boundary addresses, an invalid opcode and a mid-program reset. All of them pass."
 
----
+### Scene 7 · 3:58-4:35 · Suryansh
+*Driver, before speaking: stay on the `make test` output and point at the `no_data_access` line (Harvard=4, shared=4).*
 
-### 6. Verification Suite & Conclusion: Suryansh Singh (3:00 - 3:30)
+"With no data accesses, both designs take four cycles. So separate paths help only when a fetch and a data access would compete; in our model the shared design needs exactly one extra cycle per LOAD or STORE. This is a small simulation model, not a general speed-up claim. **[report]** Our IEEE-format report **[repository]** and our repository have the Verilog, the testbenches, block diagrams, waveforms and results."
 
-*Visual: Terminal running `make test` showing 6 passing tests, then showing the IEEE Report PDF and the interactive GitHub Pages site.*
+Then say **one** of these, whichever is true on recording day:
+- If every member's own pull request is merged: "Each of us also added our own test or improvement, which you can see in our commit history. Thank you."
+- Otherwise: "Next, each of us is adding our own improvement from our own GitHub account. Thank you."
 
-> **Suryansh Singh:** "Running `make test` verifies six rigorous verification scenarios: the primary demo, address boundary tests, zero-data NOP sequences, immediate HALT, invalid opcode trap, and mid-execution reset recovery. All six scenarios pass.  
-> All project artifacts—including our IEEE conference paper draft, complete Verilog source code, automated test suite, and an interactive GitHub Pages dashboard—are available in our GitHub repository at `TechySuryansh/Architec`. Thank you!"
+*Driver: at* **report**, *switch to the report PDF. At* **repository**, *switch to the GitHub page and scroll once. After "Thank you", show the end card for two seconds, then stop recording.*
 
----
+## 5. If something goes wrong
 
-## Recording Tips
+- **`make demo` fails or the tools are missing:** type `cat results/demo_output.txt` and say "This is the saved output of the same command." Keep going.
+- **`make test` fails:** type `clear; cat results/test_output.txt` and say the same sentence. Scene 7 can still point at its `no_data_access` line.
+- **Someone stumbles:** keep going. Restart only if two things go wrong or a name is missed.
+- **Running long:** if the stopwatch passes 4:40 during scene 7, skip straight to "Thank you".
+- **Scenario count changed:** if new tests were merged, the terminal shows a number other than 6. The words above deliberately say "every scenario", so nothing needs changing.
 
-1. Ensure good audio quality and no background noise.
-2. Maintain camera eye contact during spoken parts.
-3. Keep the shared terminal and diagrams zoomed in and legible.
-4. Keep the total video duration under **5 minutes** (aiming for 3:30).
-5. Upload the video (unlisted YouTube or Google Drive with public view access) and update `VIDEO.md`.
+## 6. After recording
+
+1. Watch the whole video once. Check that it is **at most 5:00**, all five names are heard and the code is readable. If it is too long, trim pauses at the start and end (QuickTime: *Edit → Trim*).
+2. Upload it either to **YouTube as Unlisted** (not Private) or to **Google Drive**, with *Share → General access → Anyone with the link → Viewer*.
+3. Open the link in a private/incognito window while logged out. It must play.
+4. Run `python3 scripts/set_video_link.py "LINK" 4:35` with the real link and exact duration. It fills in [`VIDEO.md`](../VIDEO.md) and the README badge. Commit on a branch, open a pull request and merge it.
+5. Submit the repository link in the form (see [`TEAM_AND_PLAN.md`](TEAM_AND_PLAN.md)).

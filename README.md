@@ -1,124 +1,141 @@
-# Architec | Instruction and Data Memory Hierarchy
+<div align="center">
 
-**MCA Projects 2026 — Section A — Project 9**  
-**Team Name:** Architec  
-**GitHub Repository:** [TechySuryansh/Architec](https://github.com/TechySuryansh/Architec)  
-**Interactive GitHub Pages Site:** [https://TechySuryansh.github.io/Architec](https://TechySuryansh.github.io/Architec)
+# Architec
 
----
+### Instruction and Data Memory Hierarchy: Harvard vs von Neumann-style memory in Verilog
 
-## Team Roster & Ownership
+**Project 9 · MCA Projects 2026 · Section A · Team Architec**
 
-| Member | Enrolment No. | Institutional Email | Project Ownership |
-| --- | --- | --- | --- |
-| **Suryansh Singh (Lead)** | 2401010467 | `suryansh.singh2024@nst.rishihood.edu.in` | System Integration, IEEE Report, Repository & GitHub Pages Deployment,Program Counter |
-| **Pranjal Modi** | 2401010334 | `pranjal.modi2024@nst.rishihood.edu.in` | Instruction Memory, Instruction Fetch Verification |
-| **Sarvjeet Yadav** | 2401010424 | `sarvjeet.yadav2024@nst.rishihood.edu.in` | Data Memory, Read/Write Control, Timing & Reset Retention |
-| **Abhishek Tripathi** | 2401010022 | `abhishek.tripathi2024@nst.rishihood.edu.in` | Shared Memory, Address Decoder, Port Contention Arbitration |
-| **Sameer Khan** | 2401020054 | `sameer.khan2024@nst.rishihood.edu.in` | Testbench Suite, Simulation Verification, Waveforms & Analysis |
+<a href="output/pdf/Architec_Phase_I_Report.pdf"><img alt="IEEE report (PDF)" src="https://img.shields.io/badge/IEEE_report-PDF-145f9b?style=for-the-badge&logo=adobeacrobatreader&logoColor=white"></a>
+<!-- VIDEO-BADGE --><a href="https://drive.google.com/file/d/1GOwnnic7O2yTTr9AbOawrpZRBdAf3lRN/view?usp=drive_link"><img alt="Watch the prototype video" src="https://img.shields.io/badge/Prototype_video-watch-a54c13?style=for-the-badge&logo=youtube&logoColor=white"></a><!-- /VIDEO-BADGE -->
+<a href="https://TechySuryansh.github.io/Architec/"><img alt="Study guide" src="https://img.shields.io/badge/Study_guide-website-17745c?style=for-the-badge&logo=readthedocs&logoColor=white"></a>
+<a href="https://TechySuryansh.github.io/Architec/team.html"><img alt="Team hub" src="https://img.shields.io/badge/Team_hub-tasks_%26_script-172638?style=for-the-badge&logo=github&logoColor=white"></a>
 
----
+<a href="https://github.com/TechySuryansh/Architec/actions/workflows/tests.yml"><img alt="Simulation tests" src="https://github.com/TechySuryansh/Architec/actions/workflows/tests.yml/badge.svg"></a>
+<a href="https://github.com/TechySuryansh/Architec/actions/workflows/pages.yml"><img alt="Website" src="https://github.com/TechySuryansh/Architec/actions/workflows/pages.yml/badge.svg"></a>
+<img alt="Verilog" src="https://img.shields.io/badge/Verilog-Icarus_12%2B-5b6b7b">
 
-## Core Demonstration
+</div>
 
-We demonstrate one primary architectural principle in Verilog:  
-**Separate instruction and data paths permit an instruction fetch and a data access to occur concurrently in the same clock cycle, eliminating structural hazards.**
+> **One idea:** separate instruction and data paths (**Harvard**) let an instruction fetch and a data access happen in the same clock cycle. A **von Neumann-style** shared single-port memory must take turns. We build both around the same controller and measure the difference cycle by cycle.
 
-Both memory organizations run the same demonstration program with identical controllers, clock frequency ($10\,\text{ns}$ period), and memory capacity (32 bytes total):
+## Phase II deliverables
 
-| Harvard Architecture | Shared Single-Port Memory |
-| :--- | :--- |
-| 16 instruction bytes + 16 data bytes | Unified 32-byte memory |
-| Independent instruction and data ports | Instructions and data time-share one physical port |
-| **4 cycles to completion** | **6 cycles to completion** |
+[Cached hierarchy](docs/PHASE2.md) · [Final report](output/pdf/Architec_Final_Report.pdf) · [Phase I and II slides](output/Architec_Presentation.pptx) · [Verification output](results/hierarchy_output.txt)
 
-![Block diagram](docs/figures/architecture.png)
+Run `make hierarchy` for the cache comparison or `make check` for all simulation suites. The Phase II implementation and supporting material are adapted from [Team HEXARCH](https://github.com/mitul-bhatia/HEXARCH/tree/00213d407c2d271c9a2ca623e443573ba855e30d).
 
----
+## 📦 Phase I submission
 
-## Quickstart & Simulation
+| | Deliverable | Where | Status |
+| :---: | --- | --- | :---: |
+| 📄 | **IEEE-format report**: abstract, literature review, proposed solution, individual contributions, references | [`Architec_Phase_I_Report.pdf`](output/pdf/Architec_Phase_I_Report.pdf) · [LaTeX source](docs/report/phase1_report.tex) | ✅ |
+| 🎬 | **Prototype video** (≤ 5 min): idea, all five members, working prototype | <!-- VIDEO-ROW -->[Watch on Google Drive](https://drive.google.com/file/d/1GOwnnic7O2yTTr9AbOawrpZRBdAf3lRN/view?usp=drive_link) · [`VIDEO.md`](VIDEO.md)<!-- /VIDEO-ROW --> | <!-- VIDEO-STATUS -->✅<!-- /VIDEO-STATUS --> |
+| 🧩 | **Prototype files**: Verilog RTL and testbenches | [`rtl/`](rtl/) · [`tb/`](tb/) · [`programs/`](programs/) | ✅ |
+| 📊 | **Artefacts**: block diagram, waveforms, simulation results | [`docs/figures/`](docs/figures/) · [`results/`](results/) | ✅ |
+| 🧪 | **Verification**: 11 scenarios + 2000 random programs, run on every change | [Simulation tests](https://github.com/TechySuryansh/Architec/actions/workflows/tests.yml) | ✅ |
+| 📚 | **Explanations**: illustrated study guide, brief and rubric check | [Website](https://TechySuryansh.github.io/Architec/) · [PDF](output/pdf/Architec_Study_Guide.pdf) · [requirements check](docs/REQUIREMENTS.md) | ✅ |
 
-To run the simulation using Icarus Verilog:
+## 🧠 The two designs
+
+Both run the same program on the same controller with the same 32 bytes of memory and the same clock. Only the memory wiring differs: one parameter, `SHARED_BUS`, selects it.
+
+| 🔵 Harvard (`SHARED_BUS=0`) | 🟠 Von Neumann-style shared (`SHARED_BUS=1`) |
+| --- | --- |
+| 16 instruction bytes + 16 data bytes | One 32-byte memory |
+| Separate instruction and data ports | One port: instructions at 0-15, data at 16-31 |
+| Fetch the next instruction **while** LOAD/STORE uses data | A LOAD/STORE **blocks** the fetch for one cycle |
+
+![Block diagram: one controller, two memory organizations](docs/figures/architecture.png)
+
+## ⚡ Quick start
+
+**1. Install the tools once**
+
+| Computer | Command |
+| --- | --- |
+| 🍎 macOS | `brew install icarus-verilog` |
+| 🐧 Ubuntu / Debian | `sudo apt-get install -y iverilog make python3` |
+| 🪟 Windows | `wsl --install -d Ubuntu` in an administrator PowerShell, restart, open *Ubuntu*, then use the Ubuntu command |
+
+**2. Run the demonstration**
 
 ```sh
-# Run the 3-instruction demonstration
 make demo
 ```
 
-The program contains three instructions:
+It runs a three-instruction program on both designs and checks the result automatically:
+
 ```text
-LOAD 0     ; Read data[0] = 7 into accumulator
-STORE 1    ; Write accumulator to data[1]
-HALT       ; Terminate execution
+LOAD 0     Read data[0] = 7 into the accumulator
+STORE 1    Write the accumulator to data[1]
+HALT       Stop
 ```
 
-The terminal prints a cycle-by-cycle trace verifying results:
+| Result | 🔵 Harvard | 🟠 Shared |
+| --- | ---: | ---: |
+| Final `data[1]` | 7 | 7 |
+| **Cycles to finish** | **4** | **6** |
+| Cycles where fetch and data access overlap | 2 | 0 |
+| Fetches blocked by a data access | 0 | 2 |
 
-| Metric | Harvard Architecture | Shared Memory |
-| :--- | :---: | :---: |
-| **Final `data[1]` value** | **7** | **7** |
-| **Total Completion Cycles** | **4** | **6** |
-| **Fetch/Data Overlap Cycles** | **2** | **0** |
-| **Blocked Fetch Cycles** | **0** | **2** |
+**The general rule.** A straight-line program of `N` instructions (including HALT) with `M` LOAD/STORE instructions takes **`N + 1`** cycles on Harvard and **`N + 1 + M`** on shared memory. With no data accesses (`M = 0`) both take the same time: separate paths help only when a fetch and a data access would compete. Counts include the first fetch and the HALT; reset is excluded. This is a simulation model with combinational reads and rising-edge writes, not a general speed-up claim.
 
-![Simulation waveforms](docs/figures/waveforms.png)
+![Simulation waveforms: Harvard fetch overlaps the read and the write; shared fetch never does](docs/figures/waveforms.png)
 
----
-
-## Verification Test Suite (6/6 Passing)
+## ✅ Verify
 
 ```sh
-# Run all six verification scenarios
-make test
+make test     # 11 self-checking scenarios
+make stress   # 2000 random programs against a software model
+make check    # all of the above
 ```
 
-The testbench checks:
-1. **Scenario 0 (Demo):** `LOAD 0 -> STORE 1 -> HALT` (Harvard: 4 cycles, Shared: 6 cycles).
-2. **Scenario 1 (Boundaries):** Upper address boundary (address 15) and back-to-back STORE followed immediately by LOAD.
-3. **Scenario 2 (No Data Traffic):** `NOP -> NOP -> HALT` (both finish in 4 cycles; proves Harvard advantage occurs specifically when data accesses compete).
-4. **Scenario 3 (Immediate HALT):** Halts cleanly in 2 cycles.
-5. **Scenario 4 (Fault Handling):** Invalid opcodes trap and set `fault = 1`.
-6. **Scenario 5 (Reset Recovery):** Mid-sequence reset clears controller while retaining written memory data.
+The 11 scenarios include the demo, address boundaries, no data access, HALT only, an invalid opcode, mid-program reset, a full 16-byte program, a data copy-chain, and an $M = 1, 3, 5$ memory operation sweep. Every run checks all final data words, that instructions are never overwritten, that the PC holds during a blocked fetch, and that the shared port has one user per cycle. Results are written to `build/` and copied to [`results/`](results/) only when the run passes. The same checks run on GitHub for every pull request.
 
----
+<details>
+<summary><b>Result files</b></summary>
 
-## FPGA results and live demonstration
+| File | Contents |
+| --- | --- |
+| [`results/demo_output.txt`](results/demo_output.txt) | Cycle table (`F/R/W` = fetch / read / write) |
+| [`results/test_output.txt`](results/test_output.txt), [`results/summary.csv`](results/summary.csv) | Every scenario's result |
+| [`results/stress_output.txt`](results/stress_output.txt) | Random-program result |
+| [`results/demo.vcd`](results/demo.vcd), [`results/memory_compare.vcd`](results/memory_compare.vcd) | Waveforms (open in GTKWave) |
+| [`results/demo_trace.csv`](results/demo_trace.csv) | Signals used to draw the waveform figure |
 
-Run `make synth` from the repository root with Python 3, Yosys and
-nextpnr-ice40 on PATH. On macOS the FPGA tools are available with
-`brew install yosys nextpnr-ice40`. The flow targets the iCE40-HX8K CT256
-at 25 MHz, seed 1, with automatically assigned I/O pins for the comparison.
-It writes raw synthesis and routing logs under `build/fpga/` and publishes
-[routed timing and utilization](results/fpga/summary.csv) with the tool versions
-in `results/fpga/`. Run `make report` with Tectonic or pdfLaTeX to rebuild the
-report using the archived measurements. Follow the [live demo](docs/LIVE_DEMO.md)
-to present the architecture, waveforms, simulations and hardware estimates.
+</details>
 
-## Documentation & Project Links
+## 👥 Team
 
-- 🌐 **[Interactive Web Portal (GitHub Pages)](https://TechySuryansh.github.io/Architec)**: Live cycle stepper, architecture visualizer, study materials, and simulator.
-- 📘 **[Study Material & Project Guide](docs/PROJECT_GUIDE.md)**: Cycle-by-cycle breakdown, ISA description, module reference, and viva interview Q&A.
-- 📋 **[Requirements & Evidence Checklist](docs/REQUIREMENTS.md)**: Deliverable audit against evaluation criteria.
-- 👥 **[Team & Submission Plan](docs/TEAM_AND_PLAN.md)**: Member roles, timeline, and submission guidelines.
-- 📄 **[Final technical report](output/pdf/final_report.pdf)** (with editable [LaTeX Source](docs/report/final_report.tex)).
-- 🎥 **[Video Demonstration Script](docs/VIDEO_SCRIPT.md)**: 3-minute 30-second script for all 5 team members.
-- 🎬 **[Demonstration Video (Google Drive)](https://drive.google.com/file/d/1GOwnnic7O2yTTr9AbOawrpZRBdAf3lRN/view?usp=drive_link)** (details & submission checklist in [VIDEO.md](VIDEO.md)).
+| Member | Responsible for | Presentation assignment |
+| --- | --- | --- |
+| **Pranjal Modi** | Instruction path: program counter, instruction memory | Scene 2 |
+| **Sarvjeet Yadav** | Data path: data memory, read/write control | Scene 3 |
+| **Abhishek Tripathi** | Shared memory, address decoder, fetch-stall rule | Scene 4 |
+| **Sameer Khan** | Simulation: testbenches, results, waveforms | Scenes 5-6 |
+| **Suryansh Singh** | Integration: top level, controller, build, report, repository, video | Scenes 1, 7 |
 
----
+👉 Team members: open the **[Team hub](https://TechySuryansh.github.io/Architec/team.html)**, click your name, and follow your steps. The plan and checklist are in [`docs/TEAM_AND_PLAN.md`](docs/TEAM_AND_PLAN.md).
 
-## Generated Artifacts
+## 🗂️ What is where
 
-- `results/demo_output.txt`: Human-readable cycle table for the demonstration.
-- `results/demo_trace.csv`: Cycle-by-cycle sampled signals.
-- `results/demo.vcd`: Demonstration waveform (open in GTKWave or online VCD viewers).
-- `results/test_output.txt`: Comprehensive output of all 6 test scenarios.
-- `results/summary.csv`: Machine-readable results summary.
-- `docs/figures/`: Vector SVGs and high-resolution PNGs of architecture and waveforms.
+| Path | Contents |
+| --- | --- |
+| [`rtl/`](rtl/) | The Verilog design: 8 modules ([what each one does](docs/PROJECT_GUIDE.md#what-each-module-does)) |
+| [`tb/`](tb/) | Testbenches: scenarios and the random stress test |
+| [`programs/`](programs/) | Demo program and starting data (hex) |
+| [`results/`](results/) | Simulation output and waveforms |
+| [`docs/`](docs/) | [Simple explanation](docs/PROJECT_GUIDE.md) · [requirements check](docs/REQUIREMENTS.md) · [video script](docs/VIDEO_SCRIPT.md) · [member tasks](docs/MEMBER_TASKS.md) · figures · report and study-guide sources |
+| [`output/pdf/`](output/pdf/) | Report and study guide PDFs |
 
----
+<details>
+<summary><b>Rebuilding the figures, report, guide and website</b></summary>
 
-## Submission Details
+`make figures` (needs `librsvg`), `make report` (needs LaTeX), `make guide` (needs Google Chrome), `make site` (Python only). The website is rebuilt and published automatically on every merge to `main`. The bundled IEEEtran class is credited in [`THIRD_PARTY.md`](THIRD_PARTY.md).
 
-- **Course:** MCA Projects 2026, Section A
-- **Deadline:** November 16, 2026, 11:59 PM IST
-- **Submission Form:** [Google Form Submission](https://docs.google.com/forms/d/e/1FAIpQLSc6Cx8OrOQLGj_X2ZMkyG5jc8mokq36mGRq2x8jGRNV1sbegA/viewform)
+</details>
+
+**Scope.** Phase II adds the optional shared lower-level memory (split caches over one shared memory): see [docs/PHASE2.md](docs/PHASE2.md) and `make hierarchy`. The cached hierarchy is evaluated in simulation. The two baseline designs also have [routed FPGA estimates](results/fpga/summary.csv) from the Architec build (`make synth`). Starter code and drafts were prepared with AI assistance, as the report's acknowledgment states.
+
+<div align="center"><sub><b>Phase I deadline:</b> 16 November 2026, 11:59 PM IST</sub></div>
