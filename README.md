@@ -23,7 +23,7 @@
 
 [Cached hierarchy](docs/PHASE2.md) · [Final report](output/pdf/Architec_Final_Report.pdf) · [Phase I and II slides](output/Architec_Presentation.pptx) · [Verification output](results/hierarchy_output.txt)
 
-Run `make hierarchy` for the cache comparison or `make check` for all simulation suites. The Phase II implementation and supporting material are adapted from [Team HEXARCH](https://github.com/mitul-bhatia/HEXARCH/tree/00213d407c2d271c9a2ca623e443573ba855e30d).
+Run `make hierarchy` for the cache comparison or `make check` for all simulation suites.
 
 ## 📦 Phase I submission
 

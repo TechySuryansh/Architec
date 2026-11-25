@@ -133,7 +133,7 @@ function bullets(items, opt = {}) {
 
 // ---------- 3 TEAM ----------
 {
-  const s = base("Team presentation roles", "Suryansh", "docs/TEAM_AND_PLAN.md (roles table); Phase II adapted from Team HEXARCH (see THIRD_PARTY.md)", "Introduction");
+  const s = base("Team presentation roles", "Suryansh", "docs/TEAM_AND_PLAN.md (roles table)", "Introduction");
   const hdr = (t) => ({ text: t, options: { bold: true, color: C.background1, fill: { color: C.text1 }, fontSize: 13 } });
   const row = (a, b, c, d) => [{ text: a, options: { bold: true } }, b, c, d];
   s.addTable([
@@ -146,8 +146,6 @@ function bullets(items, opt = {}) {
   ], { x: 0.5, y: 1.25, w: 9, colW: [1.7, 3.9, 2.2, 1.2], fontSize: 12, color: C.text1,
        border: { type: "solid", color: C.accent5, pt: 1 }, rowH: 0.52, valign: "middle", margin: 0.06,
        fill: { color: C.background1 } });
-  s.addText("The Phase II implementation is adapted from Team HEXARCH. See THIRD_PARTY.md for the source.",
-    { x: 0.5, y: 4.55, w: 9, h: 0.4, fontSize: 14, color: C.text1, margin: 0, isTextBox: true });
   s.addNotes("SURYANSH (30 seconds). Walk the table: each person owns specific files and presents specific slides. Everyone can explain the whole project, not only their files.");
 }
 
